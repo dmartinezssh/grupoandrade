@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 @Component({
     selector: 'dxn-conversiones',
     template: `
-        <h1>Conversiones</h1>
+        <h1>ConversionesComponent</h1>
     `,
     styles: [`
     
@@ -11,5 +11,5 @@ import { Component } from "@angular/core";
 })
 
 export class ConversionesComponent {
-    
+
 }

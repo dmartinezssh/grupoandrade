@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
 import { AuthService } from "@gpo/core";
 
 @Component({
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
 
     constructor(private builder: FormBuilder, 
                 private service: AuthService,
-                private _snackBar: MatSnackBar) { }
+                private _snackBar: MatSnackBar,
+                private router: Router) { }
 
     ngOnInit(): void {
         this.form = this.builder.group({
@@ -37,8 +39,9 @@ export class LoginComponent implements OnInit {
                     this.loading = false;
                     this.form.enable();
                     if(data.exito) {
-                        console.log(data);
+                        this.router.navigate(['welcome'])
                     } else {
+                        this.router.navigate(['welcome'])
                         console.error(data.mensaje);
                         this.openMessage(data.mensaje);
                     }

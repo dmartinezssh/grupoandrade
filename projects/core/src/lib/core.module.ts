@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CoreComponent } from './core.component';
+import { CambioLetrasPipe } from './pipes/cambioLetras.pipe';
 
 
 
 @NgModule({
   declarations: [
-    CoreComponent
+    CoreComponent,
+    CambioLetrasPipe
   ],
   imports: [
   ],
   exports: [
-    CoreComponent
+    CoreComponent,
+    CambioLetrasPipe
   ]
 })
 export class CoreModule { }
