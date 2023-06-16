@@ -6,7 +6,10 @@
       "@gpo/auth": ["projects/auth/src/public-api.ts"],
       "@gpo/calcula-fecha": ["projects/calcula-fecha/src/public-api.ts"],
       "@gpo/formulario": ["projects/formulario/src/public-api.ts"],
-      "@environments/*": ["./src/environments/*"],
+      "@environments/*": [
+        "./src/environments/*"
+      ],
+      "@gpo/shared": ["projects/shared/src/public-api.ts"]
     },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
