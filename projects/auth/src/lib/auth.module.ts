@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { AuthComponent } from './auth.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login.component';
+import { SharedModule } from '@gpo/shared';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login'},
@@ -11,13 +11,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AuthComponent
+    LoginComponent
   ],
   imports: [
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule
   ],
   exports: [
-    AuthComponent
   ]
 })
 export class AuthModule { }
