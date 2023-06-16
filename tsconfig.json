@@ -9,7 +9,12 @@
       "@environments/*": [
         "./src/environments/*"
       ],
-      "@gpo/shared": ["projects/shared/src/public-api.ts"]
+      "@gpo/shared": [
+        "projects/shared/src/public-api.ts"
+      ],
+      "@gpo/core": [
+        "projects/core/src/public-api.ts"
+      ]
     },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",

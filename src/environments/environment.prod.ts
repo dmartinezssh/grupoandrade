@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiGpoLogin: 'https://desa.ies-webcontent.com.mx/login'
 };

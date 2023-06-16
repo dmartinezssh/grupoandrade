@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { AuthService } from "@gpo/core";
 
 @Component({
     selector: 'dxn-login',
@@ -9,10 +11,11 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 export class LoginComponent implements OnInit {
     form: FormGroup = new FormGroup({});
+    loading: boolean = false;
 
-    constructor(private builder: FormBuilder) {
-
-    }
+    constructor(private builder: FormBuilder, 
+                private service: AuthService,
+                private _snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
         this.form = this.builder.group({
@@ -20,13 +23,38 @@ export class LoginComponent implements OnInit {
             password: ['', Validators.required]
         })
     }
+    
+    get f() { return this.form.controls; }
 
 
     save() {
-        console.log('123');
         if(this.form.valid) {
-            console.log('sending....');
+            this.loading = true;
+            this.form.disable();
+            this.service.login(this.form.value)
+                .subscribe(
+                data => {
+                    this.loading = false;
+                    this.form.enable();
+                    if(data.exito) {
+                        console.log(data);
+                    } else {
+                        console.error(data.mensaje);
+                        this.openMessage(data.mensaje);
+                    }
+                }, 
+                err => {
+                    this.loading = false;
+                    this.form.enable();
+                    this.openMessage(err.error.mensaje);
+                });
         }
+    }
+
+    openMessage(message: string) {
+        this._snackBar.open(message, '', {
+            duration: 2000
+        });
     }
 
 }

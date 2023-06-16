@@ -6,13 +6,16 @@
         <mat-form-field appearance="outline" class="w-100">
             <mat-label>Username</mat-label>
             <input matInput placeholder="Username" formControlName="username">
+            <mat-error *ngIf="f['username'].hasError('required')">Campo obligatorio</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="w-100">
             <mat-label>Password</mat-label>
             <input matInput type="password" placeholder="Password" formControlName="password">
+            <mat-error *ngIf="f['password'].hasError('required')">Campo obligatorio</mat-error>
         </mat-form-field>
         <div class="w-100">
-            <button type="submit" mat-raised-button color="primary" class="w-100">Login</button>
+            <button type="submit" mat-raised-button color="primary" class="w-100" [disabled]="loading">Login</button>
         </div>
+        <mat-progress-bar *ngIf="loading" mode="indeterminate" value="40"></mat-progress-bar>
     </form>
 </div>
