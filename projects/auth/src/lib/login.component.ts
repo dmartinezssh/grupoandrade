@@ -18,7 +18,9 @@ export class LoginComponent implements OnInit {
     constructor(private builder: FormBuilder, 
                 private service: AuthService,
                 private _snackBar: MatSnackBar,
-                private router: Router) { }
+                private router: Router) {
+                    localStorage.clear();
+                }
 
     ngOnInit(): void {
         this.form = this.builder.group({
@@ -40,7 +42,7 @@ export class LoginComponent implements OnInit {
                     this.loading = false;
                     this.form.enable();
                     if(data.exito) {
-                        console.log(data)
+                        localStorage.setItem('token', data.token);
                         this.router.navigate(['welcome'])
                     } else {
                         console.error(data.mensaje);

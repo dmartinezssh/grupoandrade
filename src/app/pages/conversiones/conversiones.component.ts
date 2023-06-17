@@ -3,10 +3,18 @@ import { Component } from "@angular/core";
 @Component({
     selector: 'dxn-conversiones',
     template: `
-        <div class="fs-2 text-center my-3">ConversionesComponent</div>
+        <dxn-sidebar></dxn-sidebar>
+        <div class="conversiones"><span>ConversionesComponent</span></div>
     `,
     styles: [`
-    
+        .conversiones {
+            font-size: 32px;
+            font-weight: 500;
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            transform: translate(50%, -50%);
+        }
     `]
 })
 

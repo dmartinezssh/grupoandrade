@@ -9,3 +9,4 @@ export * from './lib/auth.service';
 export * from './lib/catalogs.service';
 export * from './lib/pipes/cambioLetras.pipe';
 export * from './lib/models/estadoCivil';
+export * from './lib/sidebar/sidebar.component';

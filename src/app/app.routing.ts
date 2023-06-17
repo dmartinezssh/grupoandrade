@@ -1,13 +1,14 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AuthGuard } from "./guard/auth.guard";
 
 const routes: Routes = [
     { path: '', redirectTo: 'auth', pathMatch: 'full'},
     { path: 'auth', loadChildren: () => import('@gpo/auth').then(m => m.AuthModule)},
-    { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule)},
-    { path: 'conversiones', loadChildren: () => import('./pages/conversiones/conversiones.module').then(m => m.ConversionesModule)},
-    { path: 'calcula-fecha', loadChildren: () => import('@gpo/calcula-fecha').then(m => m.CalculaFechaModule)},
-    { path: 'formulario', loadChildren: () => import('@gpo/formulario').then(m => m.FormularioModule)}
+    { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule), canActivate: [AuthGuard]},
+    { path: 'conversiones', loadChildren: () => import('./pages/conversiones/conversiones.module').then(m => m.ConversionesModule), canActivate: [AuthGuard]},
+    { path: 'calcula-fecha', loadChildren: () => import('@gpo/calcula-fecha').then(m => m.CalculaFechaModule), canActivate: [AuthGuard]},
+    { path: 'formulario', loadChildren: () => import('@gpo/formulario').then(m => m.FormularioModule), canActivate: [AuthGuard]}
 ]
 
 @NgModule({

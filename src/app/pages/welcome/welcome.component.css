@@ -4,3 +4,13 @@ nav {
     gap: 1rem;
     align-items: center;
 }
+
+.image {
+    background-image: url('src/assets/pexels.jpg');
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

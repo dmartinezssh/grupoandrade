@@ -7,6 +7,7 @@ import { filter } from 'rxjs';
 @Component({
   selector: 'dxn-formulario',
   template: `
+    <dxn-sidebar></dxn-sidebar>
     <div class="container">
       <form class="d-flex flex-column" (ngSubmit)="guardar()" [formGroup]="form" >
         <mat-form-field appearance="outline" class="w-100">
@@ -53,6 +54,11 @@ import { filter } from 'rxjs';
     .container {
       padding: 1rem;
       width: 400px; 
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      transform: translate(50%, -50%);
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
 
     form {
