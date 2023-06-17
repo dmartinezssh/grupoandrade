@@ -6,11 +6,14 @@ import { Pipe, PipeTransform } from "@angular/core";
 
 export class CambioLetrasPipe implements PipeTransform {
     transform(value: string) {
-        return this.parseTo(value);
+        return this.replaceValue(value);
     }
 
-    private parseTo(val: string) {
-        //TODO: hacer funcion recursiva
-        return val.toUpperCase()
+    private replaceValue(word: string) {
+        let wordsToReplace: any = { a: '4', e: '3', i: '1', o: '0', u: '9' };
+        let result = Array.from(word).map((a: string) =>  
+            !!wordsToReplace[a] ? wordsToReplace[a] : a
+        ).join("");
+        return result;
     }
 }

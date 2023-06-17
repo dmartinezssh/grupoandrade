@@ -7,27 +7,38 @@ import { filter } from 'rxjs';
   template: `
     <div class="container">
       <form class="d-flex flex-column" [formGroup]="form" >
-        <input type="date" formControlName="fecha">
-        <select formControlName="unidad">
-          <option value=""></option>
-          <option value="days">Días</option>
-          <option value="months">Meses</option>
-          <option value="years">Años</option>          
-        </select>
-        <input type="text" formControlName="cantidad">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Seleccione una fecha</mat-label>
+          <input type="date" matInput placeholder="Nombres" formControlName="fecha">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Unidad</mat-label>
+          <mat-select formControlName="unidad">
+            <mat-option value="days">Días</mat-option>
+            <mat-option value="months">Meses</mat-option>
+            <mat-option value="years">Años</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Cantidad</mat-label>
+          <input type="number" matInput placeholder="Cantidad" formControlName="cantidad">
+        </mat-form-field>
+        <span *ngIf="form.valid" class="fs-4 text-center">{{result | date:'dd MMM yyyy'}}</span>
       </form>
-    </div>
-    <div *ngIf="form.valid">
-      <span>Resultado: </span><span>{{result | date:'dd MMM yyyy'}}</span>
     </div>
   `,
   styles: [`
     .container {
       padding: 1rem;  
+      width: 400px; 
     }
 
     form {
       gap: 1rem;
+    }
+
+    form span {
+      font-family: 'Press Start 2P', cursive;
     }
   `]
 })
@@ -47,7 +58,8 @@ export class CalculaFechaComponent implements OnInit {
     this.form.valueChanges
       .pipe(filter(() => this.form.valid))
       .subscribe( ({ fecha, unidad, cantidad }) => {
-        this.result = this.calcular(new Date(fecha), unidad, Number(cantidad));
+        let date = fecha.split('-')
+        this.result = this.calcular(new Date(date[0], Number(date[1]) -1, date[2]), unidad, Number(cantidad));
       })
   }
 

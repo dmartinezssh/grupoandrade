@@ -14,7 +14,6 @@ import { filter } from 'rxjs';
             <input matInput placeholder="Nombres" formControlName="nombres">
             <mat-error *ngIf="f['nombres'].hasError('required')">Campo obligatorio</mat-error>
             <mat-error *ngIf="f['nombres'].hasError('pattern')">No puede tener espacios en blanco al final</mat-error>
-            
         </mat-form-field>
         <mat-form-field appearance="outline" class="w-100">
             <mat-label>Apellidos</mat-label>

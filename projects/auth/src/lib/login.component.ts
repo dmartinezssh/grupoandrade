@@ -13,7 +13,8 @@ import { AuthService } from "@gpo/core";
 export class LoginComponent implements OnInit {
     form: FormGroup = new FormGroup({});
     loading: boolean = false;
-
+    visibility: boolean = false;
+    
     constructor(private builder: FormBuilder, 
                 private service: AuthService,
                 private _snackBar: MatSnackBar,
@@ -33,15 +34,15 @@ export class LoginComponent implements OnInit {
         if(this.form.valid) {
             this.loading = true;
             this.form.disable();
-            this.service.login(this.form.value)
+            this.service.loginMock(this.form.value)
                 .subscribe(
                 data => {
                     this.loading = false;
                     this.form.enable();
                     if(data.exito) {
+                        console.log(data)
                         this.router.navigate(['welcome'])
                     } else {
-                        this.router.navigate(['welcome'])
                         console.error(data.mensaje);
                         this.openMessage(data.mensaje);
                     }
